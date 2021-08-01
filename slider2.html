@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+          *, *::before, *::after {
+            box-sizing: border-box; 
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.2s;
+        }
+
+        a:hover {
+            border-bottom: 1px dashed #fff;
+        }
+
+        img {
+            width: 100%;
+            vertical-align: top;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        body {
+            background: url(./assets/img/su10.jpg) no-repeat center;
+            background-size: cover;
+            color: #fff;
+            height: 100vh;
+            transition: all .2s;
+            overflow: hidden;
+            font-size: 16px;
+            line-height: 1.5;
+   
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(8, 31, 36, .9);
+            z-index: -1;
+        }
+
+        .slider_wrap {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 1000px;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .slider_img {
+            position: relative;
+            width: 5000px;
+            /* 이미지가 5개라서 5000px */
+            height: 600px;
+            overflow: hidden;
+        }
+            .slider_img .slider {
+            position: relative;
+            float: left;
+            width: 1000px;
+            height: 600px;
+        }
+
+        .slider_img .slider span {
+            position: absolute;
+            left: 5px;
+            top: 5px;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <main>
+        <div class="slider_wrap">
+            <div class="slider_img">
+                 <div class="slider"><img src="../assets/img/su06.jpg" alt="이미지1"><span>이미지1</span></div>
+                <div class="slider"><img src="../assets/img/su07.jpg" alt="이미지2"><span>이미지2</span></div>
+                <div class="slider"><img src="../assets/img/su08.jpg" alt="이미지3"><span>이미지3</span></div>
+                <div class="slider"><img src="../assets/img/su09.jpg" alt="이미지4"><span>이미지4</span></div>
+                <div class="slider"><img src="../assets/img/su10.jpg" alt="이미지5"><span>이미지5</span></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <script>
+        const sliderWrap = document.querySelector('.slider_wrap'),
+            sliderImg = document.querySelector('.slider_img'),
+            slider = document.querySelectorAll('.slider');
+
+        let currentIndex = 0,
+            sliderCount = slider.length,
+            sliderWidth = sliderWrap.clientWidth;
+
+            console.log(sliderCount);
+
+            setInterval(function() {
+                currentIndex < sliderCount -1 ? currentIndex++ : currentIndex = 0;
+
+                let sliderPosition = currentIndex * -sliderWidth;
+
+                gsap.to(sliderImg, {duration: 1, left: sliderPosition, ease: "expo.out"});
+                console.log("11");
+            }, 3000);
+        
+
+
+
+
+
+    </script>
+</body>
+</html>
